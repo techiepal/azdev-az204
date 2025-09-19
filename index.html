@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZ-204: Azure Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f0ff 100%);
+            padding: 30px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 120, 215, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #0078d4;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #0078d4;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header h2 {
+            font-size: 1.4rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .role-section {
+            flex: 1;
+            min-width: 300px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .resources-section {
+            flex: 1;
+            min-width: 300px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #0078d4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #0078d4;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            font-size: 1.3rem;
+        }
+        
+        .responsibilities {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .responsibilities li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .skill-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 120, 215, 0.1);
+        }
+        
+        .skill-item i {
+            color: #0078d4;
+            font-size: 1.2rem;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .resource-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .resource-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 120, 215, 0.1);
+        }
+        
+        .resource-item h3 {
+            color: #0078d4;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .resource-item p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .resource-item a {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #0078d4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        
+        .resource-item a:hover {
+            background: #106ebe;
+        }
+        
+        .documentation-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .doc-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .doc-item i {
+            color: #0078d4;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .skills-grid, .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .azure-blue {
+            color: #0078d4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AZ-204: <span class="azure-blue">Azure Developer</span></h1>
+            <h2>Developing Solutions for Microsoft Azure</h2>
+        </div>
+        
+        <div class="content">
+            <div class="role-section">
+                <div class="section-title">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Azure Developer Role</span>
+                </div>
+                
+                <p>As an Azure Developer, you:</p>
+                <ul class="responsibilities">
+                    <li>Participate in all phases of development, including requirements gathering, design, development, deployment, security, maintenance, performance tuning, and monitoring.</li>
+                    <li>Partner with Cloud solution architects, DBAs, DevOps, and Infrastructure admins.</li>
+                </ul>
+                
+                <div class="section-title">
+                    <i class="fas fa-tools"></i>
+                    <span>Skills & Proficiencies</span>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fas fa-code"></i>
+                        <span>SDKs</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-database"></i>
+                        <span>Data storage options</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-plug"></i>
+                        <span>Data connections</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-cloud"></i>
+                        <span>APIs</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-lock"></i>
+                        <span>App authentication and authorization</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-server"></i>
+                        <span>Compute and container deployment</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-bug"></i>
+                        <span>Debugging</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-terminal"></i>
+                        <span>Azure CLI, Azure PowerShell</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resources-section">
+                <div class="section-title">
+                    <i class="fas fa-book-open"></i>
+                    <span>Study Resources</span>
+                </div>
+                
+                <div class="resources-grid">
+                    <div class="resource-item">
+                        <h3>Learning Path</h3>
+                        <p>Self-paced learning paths and modules</p>
+                        <a href="#">Explore</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <h3>Instructor-led</h3>
+                        <p>Structured courses with experts</p>
+                        <a href="#">Find courses</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <h3>Microsoft Q&A</h3>
+                        <p>Get answers from experts</p>
+                        <a href="#">Ask questions</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <h3>Community Support</h3>
+                        <p>Azure Community Support</p>
+                        <a href="#">Join community</a>
+                    </div>
+                </div>
+                
+                <div class="section-title" style="margin-top: 30px;">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Azure Documentation</span>
+                </div>
+                
+                <div class="documentation-list">
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>Container Registry</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>Container Instances</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>App Service</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>Azure Functions</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>Azure Cosmos DB</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>Blob Storage</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>Microsoft Entra ID</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>Key Vault</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>Azure Cache for Redis</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>API Apps</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>API Management</span>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-angle-right"></i>
+                        <span>Event Hubs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Start your Azure Developer journey today | Microsoft Certified: Azure Developer Associate</p>
+        </div>
+    </div>
+</body>
+</html>
